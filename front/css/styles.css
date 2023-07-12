@@ -43,3 +43,7 @@ main{
     justify-content: center;
     gap: 1rem;
 }
+
+.modal-categoria{
+    margin: 1rem;
+}

@@ -1,4 +1,4 @@
-import { getAllCategorias, deleteCategoria } from './API.js';
+import { getAllCategorias, deleteCategoria, insertCategorias } from './API.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     showDataCategorias();
@@ -24,6 +24,7 @@ async function showDataCategorias() {
     });
     // Llamar a la función para mostrar los botones de eliminación
     showEliminarButtons();
+    sendInfoForm();
 }
 
 function showEliminarButtons() {
@@ -33,4 +34,24 @@ function showEliminarButtons() {
             await deleteCategoria(eliminar.id);
         })
     });
+}
+
+function sendInfoForm() {
+    const agregarCategoriaForm = document.querySelector('#agregarCategoriaForm');
+    const nombreCategoriaForm = document.querySelector('#nombreCategoriaForm');
+    const descripcionCategoriaForm = document.querySelector('#descripcionCategoriaForm');
+    const imagenCategoriaForm = document.querySelector('#imagenCategoriaForm');
+
+    agregarCategoriaForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = {
+            nombre: nombreCategoriaForm.value,
+            descripcion: descripcionCategoriaForm.value,
+            imagen: imagenCategoriaForm.value
+        }
+        if (insertCategorias(data)) {
+            alert("Datos enviados satisfactoriamente.");
+            window.location = 'index.html';
+        }
+    })
 }
