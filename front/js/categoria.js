@@ -1,4 +1,4 @@
-import { getAllCategorias } from './API.js';
+import { getAllCategorias, deleteCategoria } from './API.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     showDataCategorias();
@@ -6,11 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function showDataCategorias() {
     const data = await getAllCategorias();
-    console.log(data);
     const bodyTable = document.getElementById('categoriaContent');
     data.forEach((categoria, index) => {
         const { _id, nombre, imagen, descripcion } = categoria;
-        console.log(nombre);
         bodyTable.innerHTML += `
         <tr>
             <th scope="row">${index + 1}</th>
@@ -19,10 +17,20 @@ async function showDataCategorias() {
             <td>${imagen}</td>
             <td>
                 <button class="btn btn-warning editar" id="${_id}">Editar</button>
-                <button class="btn btn-danger delete" id="${_id}">Eliminar</button>
+                <button class="btn btn-danger eliminar" id="${_id}">Eliminar</button>
             </td>
         </tr>
         `
     });
+    // Llamar a la función para mostrar los botones de eliminación
+    showEliminarButtons();
 }
 
+function showEliminarButtons() {
+    const botonEliminar = document.querySelectorAll('.eliminar');
+    botonEliminar.forEach(eliminar => {
+        eliminar.addEventListener('click', async () => {
+            await deleteCategoria(eliminar.id);
+        })
+    });
+}
