@@ -10,6 +10,15 @@ export async function getAllCategorias() {
     }
 }
 
+export async function getOneCategorias(id) {
+    try {
+        const categorias = await fetch(`${urlCategoria}/${id}`);
+        return categorias.json();
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export async function insertCategorias(data) {
     try {
         const categorias = await fetch(`${urlCategoria}/add`, {
@@ -24,6 +33,22 @@ export async function insertCategorias(data) {
         return response;
     } catch (error) {
 
+    }
+}
+
+export async function updateCategorias(id, data) {
+    try {
+        const categorias = await fetch(`${urlCategoria}/upd/${id}`,{
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        const response = await categorias.json();
+        return response;
+    } catch (error) {
+        console.log(error);
     }
 }
 

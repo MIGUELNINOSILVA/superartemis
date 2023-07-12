@@ -1,7 +1,8 @@
-import { getAllCategorias, deleteCategoria, insertCategorias } from './API.js';
+import { getAllCategorias, getOneCategorias, deleteCategoria, insertCategorias, updateCategorias } from './API.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     showDataCategorias();
+
 })
 
 async function showDataCategorias() {
@@ -16,7 +17,7 @@ async function showDataCategorias() {
             <td>${descripcion}</td>
             <td>${imagen}</td>
             <td>
-                <button class="btn btn-warning editar" id="${_id}">Editar</button>
+                <button type="button" class="btn btn-warning editar" data-bs-toggle="modal" data-bs-target="#editarCategoriaModal" id="${_id}">Editar</button>
                 <button class="btn btn-danger eliminar" id="${_id}">Eliminar</button>
             </td>
         </tr>
@@ -25,6 +26,7 @@ async function showDataCategorias() {
     // Llamar a la función para mostrar los botones de eliminación
     showEliminarButtons();
     sendInfoForm();
+    showDataEdit();
 }
 
 function showEliminarButtons() {
@@ -33,9 +35,9 @@ function showEliminarButtons() {
         eliminar.addEventListener('click', async () => {
             const confirmar = confirm('Estás seguro de eliminar el dato?');
             if (confirmar) {
-                await deleteCategoria(eliminar.id);    
+                await deleteCategoria(eliminar.id);
             }
-            
+
         })
     });
 }
@@ -59,3 +61,40 @@ function sendInfoForm() {
         }
     })
 }
+
+
+function showDataEdit() {
+    const nombreCategoriaFormEdit = document.querySelector('#nombreCategoriaFormEdit');
+    const descripcionCategoriaFormEdit = document.querySelector('#descripcionCategoriaFormEdit');
+    const imagenCategoriaFormEdit = document.querySelector('#imagenCategoriaFormEdit');
+    const editarCategoriaForm = document.querySelector('#editarCategoriaForm');
+
+    const buttonEditar = document.querySelectorAll('.editar');
+
+    buttonEditar.forEach(editar => {
+        editar.addEventListener('click', async () => {
+            const id = editar.id;
+            const categoria = await getOneCategorias(id);
+            console.log(categoria);
+            nombreCategoriaFormEdit.value = categoria.nombre;
+            descripcionCategoriaFormEdit.value = categoria.descripcion;
+            imagenCategoriaFormEdit.value = categoria.imagen;
+            editarCategoriaForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const newObject = {
+                    nombre: nombreCategoriaFormEdit.value,
+                    descripcion: descripcionCategoriaFormEdit.value,
+                    imagen: imagenCategoriaFormEdit.value
+                }
+                console.log(newObject);
+                if (await updateCategorias(id, newObject)) {
+                    alert("Datos enviados actualizados correctamente.");
+                    window.location = 'index.html';
+                }
+            })
+        })
+    });
+
+}
+
+
