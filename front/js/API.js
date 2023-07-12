@@ -7,6 +7,11 @@ export async function getAllCategorias() {
         return categorias.json();
     } catch (error) {
         console.log(error);
+        swal({
+            title: "Error 404",
+            text: "Error Conexión a la Base de datos!",
+            icon: "error",
+          });
     }
 }
 
@@ -32,7 +37,7 @@ export async function insertCategorias(data) {
         const response = await categorias.json();
         return response;
     } catch (error) {
-
+        console.log(error);
     }
 }
 

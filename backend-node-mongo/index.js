@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import connectarDB from './config/config.js';
 import categoriaRouter from './routes/categorias.routes.js';
+import clienteRouter from './routes/clientes.routes.js';
 import cors from 'cors';
 
 const app = express();
@@ -18,3 +19,4 @@ app.listen(PORT, () => {
 });
 
 app.use('/categorias', categoriaRouter);
+app.use('/clientes', clienteRouter);
