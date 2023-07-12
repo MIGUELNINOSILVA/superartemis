@@ -23,8 +23,8 @@
     <h2>Contenido - Clientes</h2>
     <div class="container">
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary modal-categoria" data-bs-toggle="modal" data-bs-target="#agregarCategoriaModal">
-        Agregar nueva categoria
+      <button type="button" class="btn btn-primary modal-categoria" data-bs-toggle="modal" data-bs-target="#agregarClienteModal">
+        Agregar nuevo cliente
       </button>
       <table class="table table-dark">
         <thead>
@@ -45,26 +45,30 @@
 
 
   <!-- Modal -->
-  <div class="modal fade" id="agregarCategoriaModal" tabindex="-1" aria-labelledby="agregarCategoriaModal" aria-hidden="true">
+  <div class="modal fade" id="agregarClienteModal" tabindex="-1" aria-labelledby="agregarClienteModal" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Categoria</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Cliente</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form id="agregarCategoriaForm">
+          <form id="agregarClienteForm">
             <div class="mb-3">
-              <label for="nombreCategoriaForm" class="form-label">Nombre Categoria</label>
-              <input type="text" class="form-control" id="nombreCategoriaForm" aria-describedby="nombreCategoria" placeholder="Nombre Categoria" required>
+              <label for="nombreClienteForm" class="form-label">Nombre Cliente</label>
+              <input type="text" class="form-control" id="nombreClienteForm" aria-describedby="nombreClienteForm" placeholder="Nombre Cliente" required>
             </div>
             <div class="mb-3">
-              <label for="descripcionCategoriaForm" class="form-label">Nombre Categoria</label>
-              <input type="text" class="form-control" id="descripcionCategoriaForm" aria-describedby="descripcionCategoriaForm" placeholder="Descripcion Categoria" required>
+              <label for="nombreCompaniaClienteForm" class="form-label">Nombre Compañía</label>
+              <input type="text" class="form-control" id="nombreCompaniaClienteForm" aria-describedby="nombreCompaniaClienteForm" placeholder="Nombre Compañía" required>
             </div>
             <div class="mb-3">
-              <label for="imagenCategoriaForm" class="form-label">Imagen Categoria</label>
-              <input type="text" class="form-control" id="imagenCategoriaForm" aria-describedby="imagenCategoriaForm" placeholder="Imagen Categoria" required>
+              <label for="direccionClienteForm" class="form-label">Dirección Cliente</label>
+              <input type="text" class="form-control" id="direccionClienteForm" aria-describedby="direccionClienteForm" placeholder="Dirección Cliente" required>
+            </div>
+            <div class="mb-3">
+              <label for="telefonoClienteForm" class="form-label">Telefono Cliente</label>
+              <input type="tel" class="form-control" id="telefonoClienteForm" aria-describedby="telefonoClienteForm" placeholder="Telefono Cliente" required>
             </div>
  
         </div>

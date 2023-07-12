@@ -1,4 +1,4 @@
-import { getAllClientes, deleteClientes } from '../js/API.js';
+import { getAllClientes, deleteClientes, insertClientes } from '../js/API.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     showDataClientes();
@@ -60,4 +60,28 @@ function showEliminarButtons() {
 
         })
     });
+}
+
+function sendInfoForm() {
+    const agregarClienteForm = document.querySelector('#agregarClienteForm');
+    const nombreClienteForm = document.querySelector('#nombreClienteForm');
+    const nombreCompaniaClienteForm = document.querySelector('#nombreCompaniaClienteForm');
+    const direccionClienteForm = document.querySelector('#direccionClienteForm');
+    const telefonoClienteForm = document.querySelector('#telefonoClienteForm');
+
+    agregarClienteForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = {
+            nombre: nombreClienteForm.value,
+            nombre_compannia: nombreCompaniaClienteForm.value,
+            direccion: direccionClienteForm.value,
+            telefono: telefonoClienteForm.value
+        }
+        if (insertClientes(data)) {
+            swal("Datos enviados satisfactoriamente", "¡Enviado!", "success");
+            setTimeout(() => {
+                window.location = 'clientes.html';
+            }, 2000);
+        }
+    })
 }

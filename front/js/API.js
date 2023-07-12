@@ -99,3 +99,20 @@ export async function deleteClientes(id) {
         console.log(error);
     }
 }
+
+export async function insertClientes(data) {
+    try {
+        const clientes = await fetch(`${urlCliente}/add`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+
+        })
+        const response = await clientes.json();
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
