@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import connectarDB from './config/config.js';
 import categoriaRouter from './routes/categorias.routes.js';
 import clienteRouter from './routes/clientes.routes.js';
+import empleadoRouter from './routes/empleados.routes.js';
 import cors from 'cors';
 
 const app = express();
@@ -20,3 +21,4 @@ app.listen(PORT, () => {
 
 app.use('/categorias', categoriaRouter);
 app.use('/clientes', clienteRouter);
+app.use('/empleados', empleadoRouter);
