@@ -33,10 +33,28 @@ function showEliminarButtons() {
     const botonEliminar = document.querySelectorAll('.eliminar');
     botonEliminar.forEach(eliminar => {
         eliminar.addEventListener('click', async () => {
-            const confirmar = confirm('Estás seguro de eliminar el dato?');
-            if (confirmar) {
-                await deleteCategoria(eliminar.id);
-            }
+            const confirmar = swal({
+                title: "Estás seguro?",
+                text: "No podrás recuperar tus datos!",
+                icon: "warning",
+                buttons: [
+                    'No, cancelar!',
+                    'Sí, estoy segur@!'
+                ],
+                dangerMode: true,
+            }).then(function (isConfirm) {
+                if (isConfirm) {
+                    swal({
+                        title: 'Eliminado Correctamente!',
+                        text: 'Ya no puedes recuperar tus datos',
+                        icon: 'success'
+                    }).then(function () {
+                        deleteCategoria(eliminar.id);
+                    });
+                } else {
+                    swal("Cancelado", "No has eliminado tu data", "error");
+                }
+            });
 
         })
     });
@@ -56,8 +74,10 @@ function sendInfoForm() {
             imagen: imagenCategoriaForm.value
         }
         if (insertCategorias(data)) {
-            alert("Datos enviados satisfactoriamente.");
-            window.location = 'index.html';
+            swal("Datos enviados satisfactoriamente", "¡Enviado!", "success");
+            setTimeout(() => {
+                window.location = 'index.html';
+            }, 2000);
         }
     })
 }
@@ -88,8 +108,10 @@ function showDataEdit() {
                 }
                 console.log(newObject);
                 if (await updateCategorias(id, newObject)) {
-                    alert("Datos enviados actualizados correctamente.");
-                    window.location = 'index.html';
+                    swal("Datos enviados actualizados correctamente", "¡Enviado!", "success");
+                    setTimeout(() => {
+                        window.location = 'index.html';
+                    }, 1500);
                 }
             })
         })
