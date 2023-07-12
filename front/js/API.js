@@ -9,3 +9,11 @@ export async function getAllCategorias() {
         console.log(error);
     }
 }
+
+export async function getOneCategorias() {
+    try {
+        const categorias = await fetch(`${urlCategoria}`)
+    } catch (error) {
+        console.log(error);
+    }
+}
