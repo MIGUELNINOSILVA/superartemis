@@ -31,7 +31,11 @@ function showEliminarButtons() {
     const botonEliminar = document.querySelectorAll('.eliminar');
     botonEliminar.forEach(eliminar => {
         eliminar.addEventListener('click', async () => {
-            await deleteCategoria(eliminar.id);
+            const confirmar = confirm('Estás seguro de eliminar el dato?');
+            if (confirmar) {
+                await deleteCategoria(eliminar.id);    
+            }
+            
         })
     });
 }
