@@ -87,6 +87,15 @@ export async function getAllClientes() {
     }
 }
 
+export async function getOneClientes(id) {
+    try {
+        const clientes = await fetch(`${urlCliente}/${id}`);
+        return clientes.json();
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export async function deleteClientes(id) {
     try {
         const clientes = await fetch(`${urlCliente}/remove/${id}`, {
@@ -109,6 +118,22 @@ export async function insertClientes(data) {
             },
             body: JSON.stringify(data)
 
+        })
+        const response = await clientes.json();
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export async function updateClientes(id, data) {
+    try {
+        const clientes = await fetch(`${urlCliente}/upd/${id}`,{
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         })
         const response = await clientes.json();
         return response;

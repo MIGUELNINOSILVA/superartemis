@@ -1,4 +1,4 @@
-import { getAllClientes, deleteClientes, insertClientes } from '../js/API.js';
+import { getAllClientes, deleteClientes, insertClientes, getOneClientes, updateClientes } from '../js/API.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     showDataClientes();
@@ -18,7 +18,7 @@ async function showDataClientes() {
             <td>${direccion}</td>
             <td>${telefono}</td>
             <td>
-                <button type="button" class="btn btn-warning editar" data-bs-toggle="modal" data-bs-target="#editarCategoriaModal" id="${_id}">Editar</button>
+                <button type="button" class="btn btn-warning editar" data-bs-toggle="modal" data-bs-target="#editarClienteModal" id="${_id}">Editar</button>
                 <button class="btn btn-danger eliminar" id="${_id}">Eliminar</button>
             </td>
         </tr>
@@ -84,4 +84,43 @@ function sendInfoForm() {
             }, 2000);
         }
     })
+}
+
+function showDataEdit() {
+    const nombreClienteFormEdit = document.querySelector('#nombreClienteFormEdit');
+    const nombreCompaniaClienteFormEdit = document.querySelector('#nombreCompaniaClienteFormEdit');
+    const direccionClienteFormEdit = document.querySelector('#direccionClienteFormEdit');
+    const telefonoClienteFormEdit = document.querySelector('#telefonoClienteFormEdit');
+    const editarClienteModal = document.querySelector('#editarClienteModal');
+
+    const buttonEditar = document.querySelectorAll('.editar');
+
+    buttonEditar.forEach(editar => {
+        editar.addEventListener('click', async () => {
+            const id = editar.id;
+            const cliente = await getOneClientes(id);
+            console.log(cliente);
+            nombreClienteFormEdit.value = cliente.nombre;
+            nombreCompaniaClienteFormEdit.value = cliente.nombre_compannia;
+            direccionClienteFormEdit.value = cliente.direccion;
+            telefonoClienteFormEdit.value = cliente.telefono;
+            editarClienteModal.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const newObject = {
+                    nombre: nombreClienteFormEdit.value,
+                    nombre_compannia: nombreCompaniaClienteFormEdit.value,
+                    direccion: direccionClienteFormEdit.value,
+                    telefono: telefonoClienteFormEdit.value
+                }
+                console.log(newObject);
+                if (await updateClientes(id, newObject)) {
+                    swal("Datos enviados actualizados correctamente", "¡Enviado!", "success");
+                    setTimeout(() => {
+                        window.location = 'clientes.html';
+                    }, 1500);
+                }
+            })
+        })
+    });
+
 }
