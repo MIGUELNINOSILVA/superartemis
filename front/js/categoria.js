@@ -3,7 +3,7 @@ import { getAllCategorias, getOneCategorias, deleteCategoria, insertCategorias, 
 document.addEventListener('DOMContentLoaded', () => {
     showDataCategorias();
 
-})
+});
 
 async function showDataCategorias() {
     const data = await getAllCategorias();
@@ -33,7 +33,7 @@ function showEliminarButtons() {
     const botonEliminar = document.querySelectorAll('.eliminar');
     botonEliminar.forEach(eliminar => {
         eliminar.addEventListener('click', async () => {
-            const confirmar = swal({
+            swal({
                 title: "Estás seguro?",
                 text: "No podrás recuperar tus datos!",
                 icon: "warning",

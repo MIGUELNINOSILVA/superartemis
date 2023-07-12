@@ -1,6 +1,7 @@
 const urlCategoria = "http://localhost:5001/categorias";
+const urlCliente = "http://localhost:5001/clientes";
 
-
+// Categorias API
 export async function getAllCategorias() {
     try {
         const categorias = await fetch(`${urlCategoria}/all`);
@@ -65,6 +66,34 @@ export async function deleteCategoria(id) {
         });
         const response = await categorias.json();
         window.location = 'index.html';
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// Clientes API
+export async function getAllClientes() {
+    try {
+        const clientes = await fetch(`${urlCliente}/all`);
+        return clientes.json();
+    } catch (error) {
+        console.log(error);
+        swal({
+            title: "Error 404",
+            text: "Error Conexión a la Base de datos!",
+            icon: "error",
+          });
+    }
+}
+
+export async function deleteClientes(id) {
+    try {
+        const clientes = await fetch(`${urlCliente}/remove/${id}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' }
+        });
+        const response = await clientes.json();
         return response;
     } catch (error) {
         console.log(error);
