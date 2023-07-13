@@ -1,4 +1,4 @@
-import { getAllEmpleados } from '../js/API.js';
+import { getAllEmpleados, deleteEmpleados } from '../js/API.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     showDataEmpleados();
@@ -52,9 +52,9 @@ function showEliminarButtons() {
                         title: 'Eliminado Correctamente!',
                         text: 'Ya no puedes recuperar tus datos',
                         icon: 'success'
-                    }).then(function () {
-                        deleteClientes(eliminar.id);
-                        window.location = 'clientes.html';
+                    }).then(async function () {
+                        await deleteEmpleados(eliminar.id);
+                        window.location = 'empleados.html';
                     });
                 } else {
                     swal("Cancelado", "No has eliminado tu data", "error");
