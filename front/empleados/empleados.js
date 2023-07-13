@@ -1,4 +1,4 @@
-import { getAllEmpleados, deleteEmpleados, insertEmpleados } from '../js/API.js';
+import { getAllEmpleados, deleteEmpleados, insertEmpleados, getOneEmpleados, updateEmpleados } from '../js/API.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     showDataEmpleados();
@@ -21,7 +21,7 @@ async function showDataEmpleados() {
             <td>${ciudad}</td>
             <td>${telefono}</td>
             <td>
-                <button type="button" class="btn btn-warning editar" data-bs-toggle="modal" data-bs-target="#editarClienteModal" id="${_id}">Editar</button>
+                <button type="button" class="btn btn-warning editar" data-bs-toggle="modal" data-bs-target="#editarEmpleadoModal" id="${_id}">Editar</button>
                 <button class="btn btn-danger eliminar" id="${_id}">Eliminar</button>
             </td>
         </tr>
@@ -96,36 +96,47 @@ function sendInfoForm() {
 }
 
 function showDataEdit() {
-    const nombreClienteFormEdit = document.querySelector('#nombreClienteFormEdit');
-    const nombreCompaniaClienteFormEdit = document.querySelector('#nombreCompaniaClienteFormEdit');
-    const direccionClienteFormEdit = document.querySelector('#direccionClienteFormEdit');
-    const telefonoClienteFormEdit = document.querySelector('#telefonoClienteFormEdit');
-    const editarClienteModal = document.querySelector('#editarClienteModal');
+    const nombreEmpleadoFormEdit = document.querySelector('#nombreEmpleadoFormEdit');
+    const tituloEmpleadoFormEdit = document.querySelector('#tituloEmpleadoFormEdit');
+    const nacimientoEmpleadoFormEdit = document.querySelector('#nacimientoEmpleadoFormEdit');
+    const contratacionEmpleadoFormEdit = document.querySelector('#contratacionEmpleadoFormEdit');
+    const direccionEmpleadoFormEdit =  document.querySelector('#direccionEmpleadoFormEdit');
+    const ciudadEmpleadoFormEdit = document.querySelector('#ciudadEmpleadoFormEdit');
+    const telefonoEmpleadoFormEdit = document.querySelector('#telefonoEmpleadoFormEdit');
+
+    const editarEmpleadoForm = document.querySelector('#editarEmpleadoForm');
 
     const buttonEditar = document.querySelectorAll('.editar');
 
     buttonEditar.forEach(editar => {
         editar.addEventListener('click', async () => {
             const id = editar.id;
-            const cliente = await getOneClientes(id);
-            console.log(cliente);
-            nombreClienteFormEdit.value = cliente.nombre;
-            nombreCompaniaClienteFormEdit.value = cliente.nombre_compannia;
-            direccionClienteFormEdit.value = cliente.direccion;
-            telefonoClienteFormEdit.value = cliente.telefono;
-            editarClienteModal.addEventListener('submit', async (e) => {
+            const empleado = await getOneEmpleados(id);
+            console.log(empleado);
+            nombreEmpleadoFormEdit.value = empleado.nombre;
+            tituloEmpleadoFormEdit.value = empleado.titulo;
+            nacimientoEmpleadoFormEdit.value = empleado.fecha_nacimiento;
+            contratacionEmpleadoFormEdit.value = empleado.fecha_contratacion;
+            direccionEmpleadoFormEdit.vaule = empleado.direccion;
+            ciudadEmpleadoFormEdit.value = empleado.ciudad;
+            telefonoEmpleadoFormEdit.value = empleado.telefono;
+
+            editarEmpleadoForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const newObject = {
-                    nombre: nombreClienteFormEdit.value,
-                    nombre_compannia: nombreCompaniaClienteFormEdit.value,
-                    direccion: direccionClienteFormEdit.value,
-                    telefono: telefonoClienteFormEdit.value
+                    nombre: nombreEmpleadoFormEdit.value,
+                    titulo: tituloEmpleadoFormEdit.value,
+                    fecha_nacimiento: nacimientoEmpleadoFormEdit.value,
+                    fecha_contratacion: contratacionEmpleadoFormEdit.value,
+                    direccion: direccionEmpleadoFormEdit.value,
+                    ciudad: ciudadEmpleadoFormEdit.value,
+                    telefono: telefonoEmpleadoFormEdit.value
                 }
                 console.log(newObject);
-                if (await updateClientes(id, newObject)) {
+                if (await updateEmpleados(id, newObject)) {
                     swal("Datos enviados actualizados correctamente", "¡Enviado!", "success");
                     setTimeout(() => {
-                        window.location = 'clientes.html';
+                        window.location = 'empleados.html';
                     }, 1500);
                 }
             })

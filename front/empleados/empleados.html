@@ -102,7 +102,46 @@
       </div>
     </div>
   </div>
-
+ <!-- Modal -->
+ <div class="modal fade" id="editarEmpleadoModal" tabindex="-1" aria-labelledby="editarEmpleadoModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Empleado</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="editarEmpleadoForm">
+          <div class="mb-3">
+            <input type="text" class="form-control" id="nombreEmpleadoFormEdit" aria-describedby="nombreClienteFormEdit" placeholder="Nombre Empleado">
+          </div>
+          <div class="mb-3">
+            <input type="text" class="form-control" id="tituloEmpleadoFormEdit" aria-describedby="tituloEmpleadoFormEdit" placeholder="Titulo Empleado">
+          </div>
+          <div class="mb-3">
+            <input type="date" class="form-control" id="nacimientoEmpleadoFormEdit" aria-describedby="nacimientoEmpleadoFormEdit" placeholder="Fecha Nacimiento Empleado">
+          </div>
+          <div class="mb-3">
+            <input type="date" class="form-control" id="contratacionEmpleadoFormEdit" aria-describedby="contratacionEmpleadoFormEdit" placeholder="Fecha Contratacion Empleado">
+          </div>
+          <div class="mb-3">
+            <input type="text" class="form-control" id="direccionEmpleadoFormEdit" aria-describedby="direccionEmpleadoFormEdit" placeholder="Direccion Empleado">
+          </div>
+          <div class="mb-3">
+            <input type="text" class="form-control" id="ciudadEmpleadoFormEdit" aria-describedby="ciudadEmpleadoFormEdit" placeholder="Ciudad Empleado">
+          </div>
+          <div class="mb-3">
+            <input type="number" class="form-control" id="telefonoEmpleadoFormEdit" aria-describedby="telefonoEmpleadoFormEdit" placeholder="Telefono Empleado">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-warning">Actualizar</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
   <script type="module" src="empleados.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
