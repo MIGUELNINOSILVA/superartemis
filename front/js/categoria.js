@@ -95,7 +95,6 @@ function showDataEdit() {
         editar.addEventListener('click', async () => {
             const id = editar.id;
             const categoria = await getOneCategorias(id);
-            console.log(categoria);
             nombreCategoriaFormEdit.value = categoria.nombre;
             descripcionCategoriaFormEdit.value = categoria.descripcion;
             imagenCategoriaFormEdit.value = categoria.imagen;
@@ -106,7 +105,6 @@ function showDataEdit() {
                     descripcion: descripcionCategoriaFormEdit.value,
                     imagen: imagenCategoriaFormEdit.value
                 }
-                console.log(newObject);
                 if (await updateCategorias(id, newObject)) {
                     swal("Datos enviados actualizados correctamente", "¡Enviado!", "success");
                     setTimeout(() => {

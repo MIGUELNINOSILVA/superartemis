@@ -112,7 +112,6 @@ function showDataEdit() {
         editar.addEventListener('click', async () => {
             const id = editar.id;
             const empleado = await getOneEmpleados(id);
-            console.log(empleado);
             nombreEmpleadoFormEdit.value = empleado.nombre;
             tituloEmpleadoFormEdit.value = empleado.titulo;
             nacimientoEmpleadoFormEdit.value = empleado.fecha_nacimiento;
@@ -132,7 +131,6 @@ function showDataEdit() {
                     ciudad: ciudadEmpleadoFormEdit.value,
                     telefono: telefonoEmpleadoFormEdit.value
                 }
-                console.log(newObject);
                 if (await updateEmpleados(id, newObject)) {
                     swal("Datos enviados actualizados correctamente", "¡Enviado!", "success");
                     setTimeout(() => {

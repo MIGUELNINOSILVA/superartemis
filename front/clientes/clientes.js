@@ -99,7 +99,6 @@ function showDataEdit() {
         editar.addEventListener('click', async () => {
             const id = editar.id;
             const cliente = await getOneClientes(id);
-            console.log(cliente);
             nombreClienteFormEdit.value = cliente.nombre;
             nombreCompaniaClienteFormEdit.value = cliente.nombre_compannia;
             direccionClienteFormEdit.value = cliente.direccion;
@@ -112,7 +111,6 @@ function showDataEdit() {
                     direccion: direccionClienteFormEdit.value,
                     telefono: telefonoClienteFormEdit.value
                 }
-                console.log(newObject);
                 if (await updateClientes(id, newObject)) {
                     swal("Datos enviados actualizados correctamente", "¡Enviado!", "success");
                     setTimeout(() => {
