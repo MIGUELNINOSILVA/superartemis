@@ -1,47 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Front superartemis - Empleados</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Front superartemis - Empleados</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/styles.css">
 </head>
+
 <body>
-    <header>
-        <a href="#">Logo</a>
-        <nav>
-            <a href="../index.html">Categorias</a>
-            <a href="../clientes/clientes.html">Clientes</a>
-            <a href="#">Empleados</a>
-        </nav>
-    </header>
-    <main>
-        <h2>Contenido - Empleados</h2>
-        <div class="container">
-            <table class="table table-dark">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Titulo</th>
-                    <th scope="col">Fecha Nacimiento</th>
-                    <th scope="col">Fecha Contratacion</th>
-                    <th scope="col">Dirección</th>
-                    <th scope="col">Ciudad</th>
-                    <th scope="col">Telefono</th>
-                    <th scope="col">Detalles</th>
-                  </tr>
-                </thead>
-                <tbody id="empleadoContent">
-                  
-                </tbody>
-              </table>
+  <header>
+    <a href="#">Logo</a>
+    <nav>
+      <a href="../index.html">Categorias</a>
+      <a href="../clientes/clientes.html">Clientes</a>
+      <a href="#">Empleados</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Contenido - Empleados</h2>
+    <div class="container">
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Fecha Nacimiento</th>
+            <th scope="col">Fecha Contratacion</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Ciudad</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Detalles</th>
+          </tr>
+        </thead>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary modal-categoria" data-bs-toggle="modal"
+          data-bs-target="#agregarEmpleadoModal">
+          Agregar nuevo empleado
+        </button>
+        <tbody id="empleadoContent">
+
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <!-- Modal -->
+  <div class="modal fade" id="agregarEmpleadoModal" tabindex="-1" aria-labelledby="agregarEmpleadoModal"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Empleado</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-    </main>
-    <button>a</button>
-    <script type="module" src="empleados.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <div class="modal-body">
+          <form id="agregarEmpleadoForm">
+            <div class="mb-3">
+              <label for="nombreEmpleadoForm" class="form-label">Nombre Empleado</label>
+              <input type="text" class="form-control" id="nombreEmpleadoForm" aria-describedby="nombreEmpleadoForm"
+                placeholder="Nombre Empleado" required>
+            </div>
+            <div class="mb-3">
+              <label for="tituloEmpleadoForm" class="form-label">Titulo Empleado</label>
+              <input type="text" class="form-control" id="tituloEmpleadoForm" aria-describedby="tituloEmpleadoForm"
+                placeholder="Titulo Empleado" required>
+            </div>
+            <div class="mb-3">
+              <label for="nacimientoEmpleadoForm" class="form-label">Fecha Nacimiento Empleado</label>
+              <input type="date" class="form-control" id="nacimientoEmpleadoForm" aria-describedby="nacimientoEmpleadoForm"
+                placeholder="Fecha Nacimiento Empleado" required>
+            </div>
+            <div class="mb-3">
+              <label for="contratacionEmpleadoForm" class="form-label">Fecha Contratacion Empleado</label>
+              <input type="date" class="form-control" id="contratacionEmpleadoForm" aria-describedby="contratacionEmpleadoForm"
+                placeholder="Fecha Contratacion Empleado" required>
+            </div>
+            <div class="mb-3">
+              <label for="direccionEmpleadoForm" class="form-label">Dirección Empleado</label>
+              <input type="text" class="form-control" id="direccionEmpleadoForm" aria-describedby="direccionEmpleadoForm"
+                placeholder="Direccion Empleado" required>
+            </div>
+            <div class="mb-3">
+              <label for="ciudadEmpleadoForm" class="form-label">Ciudad Empleado</label>
+              <input type="text" class="form-control" id="ciudadEmpleadoForm" aria-describedby="ciudadEmpleadoForm"
+                placeholder="Ciudad Empleado" required>
+            </div>
+            <div class="mb-3">
+              <label for="telefonoEmpleadoForm" class="form-label">Telefono Empleado</label>
+              <input type="number" class="form-control" id="telefonoEmpleadoForm" aria-describedby="telefonoEmpleadoForm"
+                placeholder="Telefono Empleado" required>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="empleados.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
 </body>
+
 </html>
