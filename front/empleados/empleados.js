@@ -1,4 +1,4 @@
-import { getAllEmpleados, deleteEmpleados } from '../js/API.js';
+import { getAllEmpleados, deleteEmpleados, insertEmpleados } from '../js/API.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     showDataEmpleados();
@@ -66,24 +66,30 @@ function showEliminarButtons() {
 }
 
 function sendInfoForm() {
-    const agregarClienteForm = document.querySelector('#agregarClienteForm');
-    const nombreClienteForm = document.querySelector('#nombreClienteForm');
-    const nombreCompaniaClienteForm = document.querySelector('#nombreCompaniaClienteForm');
-    const direccionClienteForm = document.querySelector('#direccionClienteForm');
-    const telefonoClienteForm = document.querySelector('#telefonoClienteForm');
+    const agregarEmpleadoForm = document.querySelector('#agregarEmpleadoForm');
+    const nombreEmpleadoForm = document.querySelector('#nombreEmpleadoForm');
+    const tituloEmpleadoForm = document.querySelector('#tituloEmpleadoForm');
+    const nacimientoEmpleadoForm = document.querySelector('#nacimientoEmpleadoForm');
+    const contratacionEmpleadoForm = document.querySelector('#contratacionEmpleadoForm');
+    const direccionEmpleadoForm = document.querySelector('#direccionEmpleadoForm');
+    const ciudadEmpleadoForm = document.querySelector('#ciudadEmpleadoForm');
+    const telefonoEmpleadoForm = document.querySelector('#telefonoEmpleadoForm');
 
-    agregarClienteForm.addEventListener('submit', (e) => {
+    agregarEmpleadoForm.addEventListener('submit', async(e) => {
         e.preventDefault();
         const data = {
-            nombre: nombreClienteForm.value,
-            nombre_compannia: nombreCompaniaClienteForm.value,
-            direccion: direccionClienteForm.value,
-            telefono: telefonoClienteForm.value
+            nombre: nombreEmpleadoForm.value,
+            titulo: tituloEmpleadoForm.value,
+            fecha_nacimiento: nacimientoEmpleadoForm.value,
+            fecha_contratacion: contratacionEmpleadoForm.value,
+            direccion: direccionEmpleadoForm.value,
+            ciudad: ciudadEmpleadoForm.value,
+            telefono: telefonoEmpleadoForm.value
         }
-        if (insertClientes(data)) {
+        if (await insertEmpleados(data)) {
             swal("Datos enviados satisfactoriamente", "¡Enviado!", "success");
             setTimeout(() => {
-                window.location = 'clientes.html';
+                window.location = 'empleados.html';
             }, 2000);
         }
     })
